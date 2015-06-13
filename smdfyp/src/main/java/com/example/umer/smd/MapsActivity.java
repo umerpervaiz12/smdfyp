@@ -51,8 +51,12 @@ public class MapsActivity extends FragmentActivity {
 
                 }
               String phoneNumber="03477884564";
+              String lon=String.valueOf(l1);
+              String lat=String.valueOf(l2);
+
+               String messagef=name + "-" +lon + "-" + lat;
                 SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage(phoneNumber, null, name, null, null);
+                sms.sendTextMessage(phoneNumber, null, messagef, null, null);
 
                 Toast.makeText(getApplicationContext(), String.valueOf(l1) + "," + String.valueOf(l2),
                         Toast.LENGTH_SHORT).show();

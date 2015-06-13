@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 Intent intent = new Intent(context, MapsActivity.class);
-                intent.putExtra("umer","this is emergency");
+               intent.putExtra("umer",message);
                 startActivity(intent);
             }
         });
