@@ -40,14 +40,16 @@ public class MainActivity extends ActionBarActivity {
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
+        Intent serviceIntent = new Intent(this,smsservice.class);
+        serviceIntent.setAction("com.example.umer.smd.smsservice");
+        startService(serviceIntent);
+
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Toast.makeText(MainActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
-                Intent serviceIntent = new Intent();
-                serviceIntent.setAction("com.example.umer.smd.smsservice");
-                startService(serviceIntent);
+
 
                 String message="default";
                 if(position==0)
