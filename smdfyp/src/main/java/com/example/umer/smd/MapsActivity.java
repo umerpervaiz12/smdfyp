@@ -1,5 +1,6 @@
 package com.example.umer.smd;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.location.Location;
 import android.support.v4.app.FragmentActivity;
@@ -9,12 +10,14 @@ import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import android.telephony.gsm.SmsManager;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+@SuppressWarnings("ALL")
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
@@ -39,6 +42,18 @@ public class MapsActivity extends FragmentActivity {
                 Location myposition= mMap.getMyLocation();
                double l1=myposition.getLatitude();
                 double l2=myposition.getLongitude();
+                Bundle extra=getIntent().getExtras();
+                String name="this is default sms"
+                        ;
+                if(extra!=null)
+                {
+                    name=extra.getString("umer");
+
+                }
+              String phoneNumber="03477884564";
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(phoneNumber, null, name, null, null);
+
                 Toast.makeText(getApplicationContext(), String.valueOf(l1) + "," + String.valueOf(l2),
                         Toast.LENGTH_SHORT).show();
 

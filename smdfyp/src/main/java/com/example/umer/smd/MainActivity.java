@@ -28,7 +28,24 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
 
+                String message="default";
+                if(position==0)
+                {
+                    message="I need ambulance";
+
+                }
+                else if(position==1)
+                {
+
+                    message="I need police urgently";
+                }
+                else
+                {
+                    message="i need emergency as soon as possible";
+                }
+
                 Intent intent = new Intent(context, MapsActivity.class);
+                intent.putExtra("umer","this is emergency");
                 startActivity(intent);
             }
         });
