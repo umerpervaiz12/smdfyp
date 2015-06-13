@@ -17,10 +17,14 @@
     <uses-permission android:name="MODIFY_AUDIO_SETTINGS">
 
 
+
     </uses-permission>
     </uses-permission>
     <uses-permission android:name="android.permission.RECEIVE_SMS">
     </uses-permission>
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -30,6 +34,13 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+
+
+        </activity>
+
+        <activity
+            android:name=".FirstActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +48,18 @@
             </intent-filter>
 
 
+
+
+
         </activity>
+
+        <receiver android:name=".BootCompleteReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
         <receiver android:name="com.example.umer.smd.NewAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -57,6 +79,11 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
+        </activity>
+
+        <activity
+            android:name=".contactActivity"
+            android:label="contact" >
         </activity>
 
         <service android:name=".smsservice" android:enabled="true" >

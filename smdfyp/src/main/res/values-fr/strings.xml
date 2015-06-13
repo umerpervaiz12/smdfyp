@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SMD</string>
+    <string name="hello_world">Bonjour Le Monde</string>
+    <string name="action_settings">paramètres</string>
+    <string name="title_activity_maps">carte</string>
+    <string name="appwidget_text">exemple</string>
+    <string name="add_widget">Add widget</string>
+
+</resources>

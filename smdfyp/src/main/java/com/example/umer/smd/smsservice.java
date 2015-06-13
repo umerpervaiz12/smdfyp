@@ -89,6 +89,7 @@ public class smsservice extends Service
                         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                         audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 
+
                     }
 
 

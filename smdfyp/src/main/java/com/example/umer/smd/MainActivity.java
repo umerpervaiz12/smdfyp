@@ -40,9 +40,7 @@ public class MainActivity extends ActionBarActivity {
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
-        Intent serviceIntent = new Intent(this,smsservice.class);
-       serviceIntent.setAction("com.example.umer.smd.smsservice");
-       startService(serviceIntent);
+
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,

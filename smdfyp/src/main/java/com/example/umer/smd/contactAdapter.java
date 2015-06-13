@@ -11,10 +11,10 @@ import android.widget.ListAdapter;
 /**
  * Created by Umer on 5/22/2015.
  */
-public class ImageAdapter extends BaseAdapter {
+public class contactAdapter extends BaseAdapter {
     private Context mContext;
 
-    public ImageAdapter(Context c) {
+    public contactAdapter(Context c) {
         mContext = c;
     }
 
@@ -49,6 +49,7 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.ambulance,R.drawable.police,R.drawable.fire
+            R.drawable.rescue,R.drawable.policenew,R.drawable.logo,R.drawable.bomb,R.drawable.flight,R.drawable.blood
+
     };
 }

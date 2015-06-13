@@ -16,6 +16,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.splunk.mint.Mint;
 
 @SuppressWarnings("ALL")
 public class MapsActivity extends FragmentActivity {
@@ -65,6 +66,7 @@ public class MapsActivity extends FragmentActivity {
 
             }
         });
+        Mint.initAndStartSession(MapsActivity.this, "e02095fa");
     }
 
     @Override

@@ -105,7 +105,7 @@ public class NewAppWidget extends AppWidgetProvider {
             };
             String lon1=String.valueOf(lng[0]);
             String lat1=String.valueOf(lat[0]);
-            String messagef="I need immidiate help" + "-" +lon1 + "-" + lat1;
+            String messagef="I need immidiate help" + "@" + "lan:"+  lng + ":" +"lat:" + lat+"/";
             //sms.sendTextMessage("03477884564", null,messagef, null, null);
 
             Toast.makeText(context, "widget added", Toast.LENGTH_SHORT).show();
