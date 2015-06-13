@@ -45,6 +45,9 @@ public class MainActivity extends ActionBarActivity {
                                     int position, long id) {
                 Toast.makeText(MainActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
+                Intent serviceIntent = new Intent();
+                serviceIntent.setAction("com.example.umer.smd.smsservice");
+                startService(serviceIntent);
 
                 String message="default";
                 if(position==0)

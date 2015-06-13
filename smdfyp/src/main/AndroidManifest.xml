@@ -54,11 +54,19 @@
             android:label="@string/title_activity_maps" >
         </activity>
 
-        <activity
-            android:name=".adactivity"
-            android:label="adactivity" >
-        </activity>
+        <service android:name=".smsservice" android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.example.umer.smd.smsservice"/>
+            </intent-filter>
+        </service>
 
+        <activity android:name=".NotificationView"
+            android:label="Details of notification"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
 
 
         <activity android:name="com.google.android.gms.ads.AdActivity"
