@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+   >
+
+    <EditText
+        android:id="@+id/user_ph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Enter Phone Number"
+        >
+        <requestFocus/>
+    </EditText>
+    <EditText
+        android:id="@+id/user_det"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_ph"
+        android:ems="10"
+        android:hint="Enter Details"
+        >
+        <requestFocus/>
+    </EditText>
+    <EditText
+        android:id="@+id/user_lat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_det"
+        android:ems="10"
+        android:hint="Enter Longitude "
+        >
+        <requestFocus/>
+    </EditText>
+    <EditText
+        android:id="@+id/user_lng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_lat"
+        android:ems="10"
+        android:hint="Enter Latitude "
+        >
+        <requestFocus/>
+    </EditText>
+
+    <Button
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_lng"
+        android:text="Enter" />
+
+
+</RelativeLayout>

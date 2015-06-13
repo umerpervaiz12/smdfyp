@@ -7,9 +7,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.inputmethodservice.Keyboard;
+import android.provider.SyncStateContract;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -63,8 +66,8 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 
 
     // Getting All Contacts
-    public List<TableData> getAllContacts() {
-        List<TableData> TableList = new ArrayList<TableData>();
+    public ArrayList<TableData> getAllContacts() {
+        ArrayList<TableData> TableList = new ArrayList<TableData>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_NAME;
 

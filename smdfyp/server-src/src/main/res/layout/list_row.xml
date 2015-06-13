@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ph"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/list_item_text_selector" />
+
+    <!-- Rating -->
+    <TextView
+        android:id="@+id/det"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/list_item_text_selector"
+        android:layout_below="@id/ph"
+        android:layout_marginTop="5dp" />
+
+    <!-- Genre -->
+    <TextView
+        android:id="@+id/lng"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/list_item_text_selector"
+        android:layout_below="@id/det"
+        android:layout_marginTop="5dp" />
+
+    <!-- Release Year -->
+    <TextView
+        android:id="@+id/lat"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/list_item_text_selector"
+        android:layout_below="@id/lng"
+        android:layout_marginTop="5dp" />
+
+
+</RelativeLayout>

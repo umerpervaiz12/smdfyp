@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.telephony.gsm.SmsManager;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -47,7 +48,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
@@ -57,7 +57,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener {
+@SuppressWarnings("ALL")
+public class Details extends FragmentActivity{
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
@@ -123,34 +124,55 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-       DatabaseOperations DB=new DatabaseOperations(this);
-        List<TableData> Emergencylist=DB.getAllContacts();
-
-        mMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) this);
-
-
         float c= (float) 0.5;
         float d= (float) 0.5;
+
+        Intent intent=getIntent();
+
+       String lat1= intent.getCharSequenceExtra("lat").toString();
+      String  lon1= intent.getCharSequenceExtra("lon").toString();
+     String Title1=   intent.getCharSequenceExtra("Title").toString();
+
+     //   String lat1= "73.0842197";
+      //  String  lon1= "31.7315192";
+      //  String Title1=   "+923477884564@police";
+
+        char[] phone = new char[30];
+
+      phone=  Title1.toCharArray();
+        char [] temp1=new char[13];
+        for(int i=0;i<13;i++)
+        {
+            temp1[i]=phone[i];
+        }
+
+
+        final String phonenumber =String.valueOf(temp1);
+
+        Double finallat= Double.valueOf(lat1);
+        Double finallong= Double.valueOf(lon1);
+
+
+
+
 
 
         LatLng department=new LatLng(31.4315192,73.2842197 );
         mMap.addMarker(new MarkerOptions().position(department).title("Emeregency Department").anchor(c, d).icon(BitmapDescriptorFactory.fromResource(R.drawable.department)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(department, 1));
-        for(int i=0;i<Emergencylist.size();i++)
-        {
-            TableData table=new TableData();
-            table=Emergencylist.get(i);
-            String lat=table.getlatitude();
-            String lan=table.getlongitude();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(department, 10));
 
-          //  double finallat=Double.parseDouble(lat);
-           // double finallon=Double.parseDouble(lan);
+            String lat=lat1;
+            String lan=lon1;
 
-            String Title=table.getphonenumber();
-          String  details=table.getdetails().toLowerCase();
+            //  double finallat=Double.parseDouble(lat);
+            // double finallon=Double.parseDouble(lan);
+
+            String Title=phonenumber;
+            String  details=Title1.toLowerCase();
 
 
             String message;
+
 
             int option=0;
             if(details.contains("ambulance"))
@@ -179,19 +201,11 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 option=4;
             }
 
-
-
-
-
-
-            Double finallat= Double.valueOf(lat);
-            Double finallong= Double.valueOf(lan);
-
             LatLng temp=new LatLng(finallat,finallong);
 
             float distance=distanceBetween(department,temp);
 
-            String finalmsg=Title +":-"+message+" => Distance :  "+String.valueOf(distance) ;
+            String finalmsg=Title +":-"+" => Distance:"+String.valueOf(distance/1000)+"km";
 
             if(option==0) {
 
@@ -229,10 +243,30 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
             // Start downloading json data from Google Directions API
             downloadTask.execute(url);
 
+        Button button = new Button(this);
+        button.setText("Send Acknowledgment message");
+        addContentView(button, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                String messagef="Your Request is acknowleged.Rescue team will be there soon";
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(phonenumber, null, messagef, null, null);
+
+
+            }
+        });
+
+
+
         }
 
 
-    }   private String getDirectionsUrl(LatLng origin,LatLng dest){
+      private String getDirectionsUrl(LatLng origin,LatLng dest){
 
         // Origin of route
         String str_origin = "origin="+origin.latitude+","+origin.longitude;
@@ -293,42 +327,9 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
         return data;
     }
 
-    @Override
-    public boolean onMarkerClick(Marker marker) {
-
-       LatLng my= marker.getPosition();
-      String lat= String.valueOf(my.latitude);
-        String lon= String.valueOf(my.longitude);
-       String Title=marker.getTitle();
-
-        Button button = new Button(this);
-        button.setText("See Details");
-        final Intent i=new Intent(this,Details.class);
-
-        i.putExtra("lat",lat);
-        i.putExtra("lon",lon);
-        i.putExtra("Title",Title);
-        Toast.makeText(getApplicationContext(), lon + "," + lat +","+Title,
-                Toast.LENGTH_SHORT).show();
-        addContentView(button, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-
-                startActivity(i);
-
-            }
-        });
 
 
 
-
-
-        return true;
-    }
 
     // Fetches data from url passed
     private class DownloadTask extends AsyncTask<String, Void, String>{
