@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
                 }
                 else
                 {
-                    message="i need emergency as soon as possible";
+                    message="i need help as soon as possible";
                 }
 
                 Intent intent = new Intent(context, MapsActivity.class);
