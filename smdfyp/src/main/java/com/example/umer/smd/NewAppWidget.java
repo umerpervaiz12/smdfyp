@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 import android.telephony.gsm.SmsManager;
+
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -42,16 +44,37 @@ public class NewAppWidget extends AppWidgetProvider {
 
             final double[] lng = {0};
             final double[] lat = {0};
+            GPSTracker gps;
 
 
-            String locationProvider = LocationManager.NETWORK_PROVIDER;
+            //String locationProvider = LocationManager.NETWORK_PROVIDER;
 // Or use LocationManager.GPS_PROVIDER
-            LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-            Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+            //LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            //Location lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
 
-            lng[0] = lastKnownLocation.getLongitude();
-            lat[0] = lastKnownLocation.getLatitude();
 
+            //lng[0] = lastKnownLocation.getLongitude();
+            //lat[0] = lastKnownLocation.getLatitude();
+
+          //  lng[0] = 74.000000;
+           // lat[0] = 34.000000;
+
+            gps = new GPSTracker(context);
+
+            // check if GPS enabled
+            if(gps.canGetLocation()){
+
+                lng[0] = gps.getLatitude();
+                lat[0] = gps.getLongitude();
+
+                // \n is for new line
+
+            }else{
+                // can't get location
+                // GPS or Network is not enabled
+                // Ask user to enable GPS/network in settings
+                gps.showSettingsAlert();
+            }
 
             // Define a listener that responds to location updates
             LocationListener locationListener = new LocationListener() {
@@ -95,7 +118,7 @@ public class NewAppWidget extends AppWidgetProvider {
             PendingIntent mPendingIntent1 = PendingIntent.getBroadcast(context,
                     0, mIntent1, 0);
 
-            views.setOnClickPendingIntent(R.id.button1, mPendingIntent1);
+            views.setOnClickPendingIntent(R.id.button2, mPendingIntent1);
 
             // Update the widget
             appWidgetManager.updateAppWidget(appWidgetIds, views);
@@ -119,7 +142,7 @@ public class NewAppWidget extends AppWidgetProvider {
             } catch (NullPointerException e) {
                 Log.e("Error", "msg = null");
             }
-            //Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
             SmsManager sms = SmsManager.getDefault();
             sms.sendTextMessage("03477884564", null,msg, null, null);
         }
@@ -151,6 +174,8 @@ public class NewAppWidget extends AppWidgetProvider {
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
     }
+
+
 }
 
 

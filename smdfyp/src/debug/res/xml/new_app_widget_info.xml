@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="145dp" android:minHeight="146dp" android:updatePeriodMillis="0"
+    android:minWidth="72dp" android:minHeight="72dp" android:updatePeriodMillis="0"
 
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:previewImage="@drawable/button"
     android:initialLayout="@layout/new_app_widget"
-    android:widgetCategory="home_screen"
+    android:widgetCategory="keyguard|home_screen"
     ></appwidget-provider>

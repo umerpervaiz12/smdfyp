@@ -17,13 +17,12 @@
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/button1"
+
+    <ImageView
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="18dp"
-        android:text="@string/app_name" />
+        android:tint="#55ff0000"
+        android:src="@drawable/button"/>
 
 </RelativeLayout>
