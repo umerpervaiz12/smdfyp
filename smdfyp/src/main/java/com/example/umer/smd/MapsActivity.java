@@ -56,7 +56,7 @@ public class MapsActivity extends FragmentActivity {
               String lon=String.valueOf(l1);
               String lat=String.valueOf(l2);
 
-               String messagef=name + "@" + "lan:"+  lon + ":" +"lat:" + lat+".";
+               String messagef=name + "@" + "lan:"+  lon + ":" +"lat:" + lat+"/";
                 SmsManager sms = SmsManager.getDefault();
                 sms.sendTextMessage(phoneNumber, null, messagef, null, null);
 

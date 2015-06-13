@@ -41,8 +41,8 @@ public class MainActivity extends ActionBarActivity {
         gridview.setAdapter(new ImageAdapter(this));
 
         Intent serviceIntent = new Intent(this,smsservice.class);
-        serviceIntent.setAction("com.example.umer.smd.smsservice");
-        startService(serviceIntent);
+       serviceIntent.setAction("com.example.umer.smd.smsservice");
+       startService(serviceIntent);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
@@ -54,18 +54,18 @@ public class MainActivity extends ActionBarActivity {
                 String message="default";
                 if(position==0)
                 {
-                    message="I need ambulance";
+                    message="Emergency: I need ambulance";
 
                 }
                 else if(position==1)
                 {
 
-                    message="I need police urgently";
+                    message="Emergency: I need police urgently";
 
                 }
                 else
                 {
-                    message="i need help as soon as possible";
+                    message="Emergency: i need help as soon as possible";
                 }
 
                 Intent intent = new Intent(context, MapsActivity.class);
